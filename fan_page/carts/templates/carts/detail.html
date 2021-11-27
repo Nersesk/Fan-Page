@@ -1,0 +1,59 @@
+{% extends "news/base.html" %}
+
+{% block title %}
+    <title>Cart</title>
+{% endblock %}
+
+
+{% block contents %}
+    <h1 style="color: #CC0000">{{ user.username }}'s shopping cart</h1>
+    <table class="table">
+        <thead >
+        <tr >
+            <th scope="col">Image</th>
+            <th scope="col">Product</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Remove</th>
+            <th scope="col">Unit price</th>
+            <th scope="col">Price</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in cart %}
+            {% with product=item.product %}
+                <tr>
+                    <td  scope="row">
+                        <a href="{{ product.get_absolute_url }}">
+                            <img src="
+                                    {{ product.image.url }}" width="200" height="200">
+                        </a>
+                    </td>
+                    <td  scope="row">{{ product.title }}</td>
+                    <td><form action="{% url "cart:cart_add" product.id %}" method="post" class="form-inline">
+                        {{ item.update_q.quantity }}
+                        {{ item.update_q.update}}
+                        {% csrf_token %}
+                        <input type="submit" value="Update">
+                    </form> </td>
+                    <td><a href="{% url "cart:cart_remove" product.id%}" class="btn btn-outline-danger">Remove</a></td>
+                    <td style="color:#000;">{{ item.price }}$</td>
+                    <td class="num">{{ item.total_price }}$</td>
+                </tr>
+            {% endwith %}
+        {% endfor %}
+        <tr class="total">
+            <td>Total</td>
+            <td colspan="4"></td>
+            <td class="num">{{ cart.get_total_price }}$</td>
+        </tr>
+        </tbody>
+    </table>
+    <p class="text-right">
+        <a href="{% url "shop" %}" class="btn btn-success">Continue shopping</a>
+        {% if user.is_active %}
+        <a href="{% url 'cart:order' %}" class="btn btn-danger">Checkout</a>
+        {% else %}
+            <a href="{% url 'login' %}" class="btn btn-danger">Checkout</a>
+        {% endif %}
+    </p>
+{% endblock %}

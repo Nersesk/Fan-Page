@@ -1,0 +1,15 @@
+{% extends 'news/base.html' %}
+{% block title %}
+   <title> {{ title }}</title>
+{% endblock %}
+{% block contents %}
+ <h1>Contact us now!</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {% for f in form %}
+        <h5><label class="form-label" for="{{ f.id_for_label }}">{{f.label}}: </label>{{ f }}</h5>
+        <div class="form-error">{{ f.errors }}</div>
+        {% endfor %}
+        <button type="submit" class="login100-form-btn">Submit</button>
+    </form>
+{% endblock %}

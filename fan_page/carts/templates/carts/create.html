@@ -1,0 +1,28 @@
+{% extends "news/base.html" %}
+
+{% block title %}<title>Checkout</title>{% endblock %}
+
+{% block contents %}
+    <h1 style="color: #dc1616">Checkout</h1>
+    <div >
+        <h3>Your order</h3>
+        <ul>
+            {% for item in cart %}
+                <li>
+                    <h4 style="color: #0059b2">{{ item.quantity }} x <img width="50" height="50" src=" {{ item.product.image.url }}"></h4>
+                    <span>{{ item.total_price }}</span>
+                </li>
+            {% endfor %}
+        </ul>
+        <p>Total: {{ cart.get_total_price }}$ </p>
+    </div>
+    <hr style="color: #dc1616">
+    <form action="." method="post" class="order-form">
+        {% for f in form %}
+        <h5><label class="form-label" for="{{ f.id_for_label }}">{{f.label}}: </label>{{ f }}</h5>
+        <div class="form-error">{{ f.errors }}</div>
+        {% endfor %}
+        {% csrf_token %}
+    <button class="btn btn-danger"type="submit">Make Order </button>
+    </form>
+{% endblock %}

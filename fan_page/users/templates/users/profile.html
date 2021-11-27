@@ -1,0 +1,18 @@
+{% extends 'news/base.html' %}
+{% block title %}
+   <title> {{ title }} </title>
+{% endblock %}
+{% block contents %}
+    <h4 style="color: coral">Update </h4>
+    <h5 style="color: #A96F3C">{{ user.username }}'s info </h5>
+    <form method="POST">
+        {% csrf_token %}
+        {% for f in form %}
+        <h5><label class="form-label" for="{{ f.id_for_label }}">{{f.label}}: </label>{{ f }}</h5>
+        <div class="form-error">{{ f.errors }}</div>
+        {% endfor %}
+        <div class="form-group">
+            <button class="btn btn-outline-info" type="submit">Update</button>
+        </div>
+    </form>
+{% endblock %}
