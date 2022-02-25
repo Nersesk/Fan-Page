@@ -18,6 +18,7 @@ class Main_page(DataMixin, ListView):
         return dict(list(context.items()) + list(mix_context.items()))
 
 
+
 def show_post(request, post_slug):
 
     post = get_object_or_404(Post, slug=post_slug)
