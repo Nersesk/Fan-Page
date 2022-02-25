@@ -28,7 +28,12 @@ INSTALLED_APPS = [
     'shop.apps.ShopConfig',
     'users.apps.UsersConfig',
     'captcha',
-    'carts.apps.CartsConfig'
+    'carts.apps.CartsConfig',
+    'rest_framework',
+    'api.apps.ApiConfig',
+    'djoser',
+    'rest_framework.authtoken',
+
 ]
 
 MIDDLEWARE = [
@@ -131,3 +136,11 @@ EMAIL_HOST_USER = 'test.basic90@gmail.com'
 EMAIL_HOST_PASSWORD = 'bic@659988'
 
 CART_SESSION_ID = 'cart'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ),
+}

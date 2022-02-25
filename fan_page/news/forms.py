@@ -7,3 +7,5 @@ class Coments_create(forms.ModelForm):
         model = Comentaries
         fields = ['commentary']
         widgets={'commentary':forms.Textarea(attrs={'cols':100,'rows':2})}
+
+
