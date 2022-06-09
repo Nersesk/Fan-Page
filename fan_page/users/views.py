@@ -84,7 +84,7 @@ def profile(request):
     return render(request, 'users/profile.html', {'form': form, 'title': 'Profile','menu':menu})
 
 class ResetPasword(PasswordResetView):
-    template_name = 'users/reset.html'
+    template_name = 'users/password_reset.html'
     success_url = 'login'
 
     def get_context_data(self, **kwargs):

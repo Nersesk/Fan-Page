@@ -34,7 +34,7 @@ class AttributesApi(RetrieveUpdateAPIView):
     queryset = Attributes.objects.all()
     serializer_class = AttributeSerializer
     permission_classes = (IsAuthenticated,)
-    authentication_classes = (TokenAuthentication,)
+    # authentication_classes = (TokenAuthentication,)
 
 
 class AttributesApiList(ListAPIView):
