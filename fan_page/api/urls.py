@@ -10,7 +10,7 @@ urlpatterns=[
     path('v1/',include(router.urls)),
     path('rest/auth/',include('rest_framework.urls')),
     path(r'auth/', include('djoser.urls')),
-    re_path(r'^auth/', include('djoser.urls.authtoken')),
+    # re_path(r'^auth/', include('djoser.urls.authtoken')),
     path('v1/shop_list/',AttributesApiList.as_view()),
     path('v1/shop_attributes/<int:pk>',AttributesApi.as_view()),
 
